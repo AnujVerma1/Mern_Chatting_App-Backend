@@ -47,7 +47,7 @@ cloudinary.config({
 const app = express();     // Initializes the Express application.
 const server = createServer(app);  // Creates an HTTP server using the Express app.
 const corsOptions = {
-  origin: "https://mern-chatting-app-frontend.vercel.app/login", // Allow all origins temporarily
+  origin: process.env.CLIENT_URL, // Allow all origins temporarily
   methods: ["GET", "POST"],
   credentials: true,
 };
