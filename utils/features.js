@@ -12,13 +12,23 @@ const cookieOptions = {
 };
 
 const connectDB = (uri) => {
-  mongoose
-    .connect(uri, { dbName: "Chattu" })
+  mongoose.connect(uri, { dbName: "Chattu" })
     .then((data) => console.log(`Connected to DB: ${data.connection.host}`))
     .catch((err) => {
-      throw err;
+      console.error("MongoDB connection error:", err);
+      process.exit(1); // Exit process with failure on connection error
     });
 };
+
+
+// const connectDB = (uri) => {
+//   mongoose
+//     .connect(uri, { dbName: "Chattu" })
+//     .then((data) => console.log(`Connected to DB: ${data.connection.host}`))
+//     .catch((err) => {
+//       throw err;
+//     });
+// };
 
 const sendToken = (res, user, code, message) => {
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
